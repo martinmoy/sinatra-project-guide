@@ -15,7 +15,7 @@ Users Attribute
     name  
     email
     password (bcrypt and password_digest)
-    has mnay countries 
+    has many countries 
     has many post through countries 
 
 Association 
