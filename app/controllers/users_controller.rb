@@ -9,8 +9,10 @@ class UsersController < ApplicationController
         #find the user
         @user = User.find_by(email: params[:email])
         #authenticate the users
-        if @user.authenticate(params[:password])
-            redirect "/success"
+        if @user && @user.authenticate(params[:password])
+            session[:user_id] = @user.id
+            redirect "/users/#{@user.id}"
+
         else 
             redirect "/failure"
         end
@@ -21,6 +23,10 @@ class UsersController < ApplicationController
 
     get '/signup' do 
         erb :signup
+    end
+
+    get '/users/:id' do 
+        Welcome
     end
 
 
