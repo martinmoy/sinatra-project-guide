@@ -11,7 +11,6 @@ class UsersController < ApplicationController
         #authenticate the users
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            put session
             redirect "/users/#{@user.id}"
 
         else 
@@ -42,7 +41,7 @@ class UsersController < ApplicationController
         erb :'users/show'
     end
 
-    get 'logout' do
+    get '/logout' do
         session.clear
         redirect '/'
     end
